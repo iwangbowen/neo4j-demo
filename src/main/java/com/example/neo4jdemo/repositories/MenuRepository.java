@@ -1,6 +1,7 @@
 package com.example.neo4jdemo.repositories;
 
 import java.util.List;
+import java.util.Map;
 
 import org.neo4j.driver.Result;
 import org.springframework.data.neo4j.repository.Neo4jRepository;
@@ -46,15 +47,24 @@ public interface MenuRepository extends Neo4jRepository<Menu, String> {
     public List<Menu> findByIds(List<Long> ids);
 
     @Query("""
-            match (m:Menu)
-            return m;
+            MATCH (m:Menu)
+            RETURN id(m) AS id, m.name AS name;
             """)
     public List<MenuProjection> findMenuNames();
+
+    public List<MenuProjection> findByName(String name);
 
     @Query("""
             match (m:Menu)
             return m.name
             """)
     public Result findResult();
+
+
+    @Query("""
+                match (m:Menu)
+                return m.name as name
+                    """)
+    List<String> findIterable();
 
 }

@@ -41,4 +41,8 @@ public class User {
         this.name = name;
     }
 
+    public interface Hobbies {
+        public String[] getHobbies();
+    }
+
 }

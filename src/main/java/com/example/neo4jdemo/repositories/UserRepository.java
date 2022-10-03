@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.example.neo4jdemo.domains.Menu;
 import com.example.neo4jdemo.domains.User;
+import com.example.neo4jdemo.domains.User.Hobbies;
 
 public interface UserRepository extends Neo4jRepository<User, String> {
 
@@ -17,4 +18,19 @@ public interface UserRepository extends Neo4jRepository<User, String> {
         return collect(menus)
             """)
     public List<Menu> findMenusByUserId(@Param("id") String id);
+
+    @Query("""
+        match (user:User)
+        where user.id = $id
+        return user.hobbies as hobbies;
+            """)
+    public List<List<String>> findHobbies(@Param("id") String id);
+
+
+    @Query("""
+            match (user:User)
+            where user.id = $id
+            return user.name;
+            """)
+    public String findName(@Param("id") String id);
 }
