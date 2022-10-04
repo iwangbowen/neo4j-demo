@@ -56,8 +56,8 @@ public class Neo4jDemoApplication implements CommandLineRunner {
 		Menu menu = menuRepository.findNested(196L);
 		List<Song> songs = songRepository.findAll();
 		songs.forEach(System.out::println);
-		List<MenuProjection> menuPro = menuRepository.findByName("一级菜单");
-		menuPro = menuRepository.findMenuNames();
+		// List<MenuProjection> menuPro = menuRepository.findByName("一级菜单");
+		// menuPro = menuRepository.findMenuNames();
 		menus = menuRepository.findByIds(List.of(196L, 197L));
 		List<Menu> menuList = menuRepository.findMenus();
 		menus = menuRepository.findMenusByUserId(204L);
