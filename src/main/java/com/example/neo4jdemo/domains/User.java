@@ -5,19 +5,33 @@ import java.util.List;
 import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
+import org.springframework.data.neo4j.core.schema.Property;
+import org.springframework.data.neo4j.core.schema.GeneratedValue.InternalIdGenerator;
 import org.springframework.data.neo4j.core.support.UUIDStringGenerator;
 
 @Node
 public class User {
     @Id
-    @GeneratedValue(generatorClass = UUIDStringGenerator.class)
-    private String id;
+    @GeneratedValue
+    private Long id;
+
+    // @Property("id")
+    // @GeneratedValue
+    // private Long uid;
+
+    // public Long getUid() {
+        // return uid;
+    // }
+
+    // public void setUid(Long uid) {
+        // this.uid = uid;
+    // }
 
     private String name;
 
     private List<String> hobbies;
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -29,7 +43,7 @@ public class User {
         this.hobbies = hobbies;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
