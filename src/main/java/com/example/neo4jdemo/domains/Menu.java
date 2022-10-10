@@ -16,6 +16,8 @@ public class Menu {
 
     private String name;
 
+    private String description;
+
     @Relationship(type = "IS_SUBMENU", direction = Relationship.Direction.INCOMING)
     List<Menu> subMenus;
 
@@ -41,5 +43,13 @@ public class Menu {
 
     public void setSubMenus(List<Menu> subMenus) {
         this.subMenus = subMenus;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

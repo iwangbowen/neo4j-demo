@@ -46,9 +46,15 @@ public interface MenuRepository extends Neo4jRepository<Menu, String> {
             """)
     public List<Menu> findByIds(List<Long> ids);
 
+    /**
+     * 如何返回多个属性
+     * 可以在Cypher中返回map，然后用POJO类接收
+     * https://stackoverflow.com/questions/30326384/neo4j-cypher-return-structured-map
+     */
     @Query("""
             MATCH (m:Menu)
-            RETURN id(m) AS id, m.name AS name;
+            WITH id(m) AS id, m.name AS name
+            RETURN {name: name} AS menu;
             """)
     public List<MenuProjection> findMenuNames();
 
